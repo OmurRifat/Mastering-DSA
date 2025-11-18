@@ -33,6 +33,7 @@ class Graph:
                 if neighbor not in visited:
                     queue.append(neighbor)
                     visited.add(neighbor)
+        print()
 
     def dfs(self, start_vertex, visited=None):
         if visited is None:
@@ -45,6 +46,27 @@ class Graph:
         for neighbor in self.adj_list[start_vertex]:
             if neighbor not in visited:
                 self.dfs(neighbor, visited)
+
+    def dfs_iterative(self, start_vertex):
+        visited = set()
+        stack = []
+
+        stack.append(start_vertex)
+
+        print("Iterative DFS Traversal:", end=" ")
+
+        while stack:
+            vertex = stack.pop()
+
+            if vertex not in visited:
+                print(vertex, end=" ")
+                visited.add(vertex)
+
+                for neighbor in self.adj_list[vertex]:
+                    if neighbor not in visited:
+                        stack.append(neighbor)
+
+        print()
 
 g = Graph()
 g.add_vertex(0)
@@ -61,3 +83,4 @@ g.print_list()
 
 g.bfs(0)
 g.dfs(0)
+g.dfs_iterative(0)
